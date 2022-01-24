@@ -16,16 +16,16 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("prasanabala123/balaprasana:1.0")
+                    docker.build("prasanabala123/balaprasana:1.1")
                 }
             }
         }
 	    stage('Pushing Docker Image to Dockerhub') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
-                        docker.image("prasanabala123/balaprasana:1.0").push()
-                        docker.image("prasanabala123/balaprasana:1.0").push("latest")
+                    docker.withRegistry('https://registry.hub.docker.com', 'Dockerhub') {
+                        docker.image("prasanabala123/balaprasana:1.1").push()
+                        docker.image("prasanabala123/balaprasana:1.1").push("latest")
                     }
                 }
             }
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 sh "docker stop hello-world | true"
                 sh "docker rm hello-world | true"
-                sh "docker run --name hello-world -d -p 9004:8080 prasanabala123/balaprasana:1.0"
+                sh "docker run --name hello-world -d -p 9004:8080 prasanabala123/balaprasana:1.1"
             }
         }
     }
