@@ -22,10 +22,10 @@ pipeline {
             }
             steps {
                 script {
-                    docker.build("prasanabala123/superteam:1.1")
+                    docker.build("prasanabala123/hello-world:1.1")
                     docker.withRegistry("https://registry.hub.docker.com", 'docker_credential') {
-                        docker.image("prasanabala123/superteam:1.1").push()
-                        docker.image("prasanabala123/superteam:1.1").push("latest")
+                        docker.image("prasanabala123/hello-world:1.1").push()
+                        docker.image("prasanabala123/hello-world:1.1").push("latest")
                     }
                 }
             }
@@ -36,10 +36,10 @@ pipeline {
             }
             steps {
                 script {
-                    docker.build("default-docker-local/superteam:1.1")
+                    docker.build("default-docker-local/hello-world:1.1")
                     docker.withRegistry('https://balarepo.jfrog.io', 'artifactory-credential') {
-                        docker.image("default-docker-local/superteam:1.1").push()
-                        docker.image("default-docker-local/superteam:1.1").push("latest")
+                        docker.image("default-docker-local/hello-world:1.1").push()
+                        docker.image("default-docker-local/hello-world:1.1").push("latest")
                     }
                 }
             }
