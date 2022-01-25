@@ -22,10 +22,10 @@ pipeline {
             }
             steps {
                 script {
-                    docker.build("vigneshsweekaran/hello-world:${TAG}")
+                    docker.build("prasanabala123/superteam:1.1")
                     docker.withRegistry("https://registry.hub.docker.com", 'docker_credential') {
-                        docker.image("vigneshsweekaran/hello-world:${TAG}").push()
-                        docker.image("vigneshsweekaran/hello-world:${TAG}").push("latest")
+                        docker.image("prasanabala123/superteam:1.1").push()
+                        docker.image("prasanabala123/superteam:1.1").push("latest")
                     }
                 }
             }
@@ -36,10 +36,10 @@ pipeline {
             }
             steps {
                 script {
-                    docker.build("default-docker-local/hello-world:${TAG}")
-                    docker.withRegistry('https://vigneshsweekaran.jfrog.io', 'artifactory-credential') {
-                        docker.image("default-docker-local/hello-world:${TAG}").push()
-                        docker.image("default-docker-local/hello-world:${TAG}").push("latest")
+                    docker.build("default-docker-local/superteam:1.1")
+                    docker.withRegistry('https://balarepo.jfrog.io', 'artifactory-credential') {
+                        docker.image("default-docker-local/superteam:1.1").push()
+                        docker.image("default-docker-local/superteam:1.1").push("latest")
                     }
                 }
             }
