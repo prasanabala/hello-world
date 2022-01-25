@@ -16,16 +16,16 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("default-docker-local/hello-world:${TAG}")
+                    docker.build("default-docker-local/hello-world:1.0")
                 }
             }
         }
 	stage('Pushing Docker Image to Jfrog Artifactory') {
             steps {
                 script {
-                    docker.withRegistry('https://vigneshsweekaran.jfrog.io', 'artifactory-credential') {
-                        docker.image("default-docker-local/hello-world:${TAG}").push()
-                        docker.image("default-docker-local/hello-world:${TAG}").push("latest")
+                    docker.withRegistry('https://balarepo.jfrog.io', 'artifactory-credential') {
+                        docker.image("default-docker-local/hello-world:1.0").push()
+                        docker.image("default-docker-local/hello-world:1.0").push("latest")
                     }
                 }
             }
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 sh "docker stop hello-world | true"
                 sh "docker rm hello-world | true"
-                sh "docker run --name hello-world -d -p 9004:8080 vigneshsweekaran.jfrog.io/default-docker-local/hello-world:${TAG}"
+                sh "docker run --name hello-world -d -p 9004:8080 balarepo.jfrog.io/default-docker-local/hello-world:1.0"
             }
         }
     }
