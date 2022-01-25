@@ -16,7 +16,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("prasanabala/hello-world:2.1")
+                    docker.build("prasanabala123/hello-world:2.1")
                 }
             }
         }
