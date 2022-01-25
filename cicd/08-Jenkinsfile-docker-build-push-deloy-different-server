@@ -16,7 +16,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("vigneshsweekaran/hello-world:${TAG}")
+                    docker.build("prasanabala/hello-world:2.1")
                 }
             }
         }
@@ -24,8 +24,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
-                        docker.image("vigneshsweekaran/hello-world:${TAG}").push()
-                        docker.image("vigneshsweekaran/hello-world:${TAG}").push("latest")
+                        docker.image("prasanabala123/hello-world:2.1").push()
+                        docker.image("prasanabala123/hello-world:2.1").push("latest")
                     }
                 }
             }
@@ -36,7 +36,7 @@ pipeline {
                     sh '''ssh -i $SSH_PRIVATE_KEY_PATH -o StrictHostKeyChecking=no ubuntu@dayal-test.letspractice.tk <<ENDSSH
                         docker stop hello-world | true
                         docker rm hello-world | true
-                        docker run --name hello-world -d -p 9004:8080 vigneshsweekaran/hello-world:${TAG}
+                        docker run --name hello-world -d -p 9004:8080 prasanabala123/hello-world:2.1
 ENDSSH
                     '''
                     // Second way of putting the commands in single sh step
