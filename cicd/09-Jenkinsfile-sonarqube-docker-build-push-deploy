@@ -29,7 +29,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("vigneshsweekaran/hello-world:${TAG}")
+                    docker.build("prasanabala123/superteam:4.0")
                 }
             }
         }
@@ -37,8 +37,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
-                        docker.image("vigneshsweekaran/hello-world:${TAG}").push()
-                        docker.image("vigneshsweekaran/hello-world:${TAG}").push("latest")
+                        docker.image("prasanabala123/superteam:4.0").push()
+                        docker.image("prasanabala123/superteam:4.0").push("latest")
                     }
                 }
             }
@@ -47,7 +47,7 @@ pipeline {
             steps {
                 sh "docker stop hello-world | true"
                 sh "docker rm hello-world | true"
-                sh "docker run --name hello-world -d -p 9004:8080 vigneshsweekaran/hello-world:${TAG}"
+                sh "docker run --name hello-world -d -p 9004:8080 prasanabala123/superteam:4.0"
             }
         }
     }
